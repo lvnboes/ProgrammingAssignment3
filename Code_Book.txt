@@ -75,7 +75,7 @@ The team who collected the data measured for a whole list of features as describ
 	fBodyGyroJerkMag
 
 
-The columns of the tidy dataset provided for this assignment, contain the measurements on the mean and standard deviation for each measurement, indicated in the column name by the feature name as well as mean() for the mean value and std() for the standard deviation.
+The columns of the tidy datasets provided for this assignment, contain the measurements on the mean and standard deviation for each measurement, indicated in the column name by the feature name as well as mean() for the mean value and std() for the standard deviation.
 The Subject column contains the id number given to the subject the measurements were collected from.
 The Activity column indicates the activity the subject was engaging in while the measurements were taken.
 
