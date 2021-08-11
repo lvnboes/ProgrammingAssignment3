@@ -5,6 +5,8 @@ output: html_document
 
 # read all data, labels and column names
 
+
+
 '''{r}
 features <- read.table('raw_data/UCI HAR Dataset/features.txt')
 labels <- read.table('raw_data/UCI HAR Dataset/activity_labels.txt')
