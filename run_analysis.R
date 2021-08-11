@@ -2,11 +2,9 @@
 
 features <- read.table('raw_data/UCI HAR Dataset/features.txt')
 labels <- read.table('raw_data/UCI HAR Dataset/activity_labels.txt')
-
 test_subjects <- read.table('raw_data/UCI HAR Dataset/test/subject_test.txt')
 test_data <- read.table('raw_data/UCI HAR Dataset/test/X_test.txt')
 test_labels <- read.table('raw_data/UCI HAR Dataset/test/y_test.txt')
-
 train_subjects <- read.table('raw_data/UCI HAR Dataset/train/subject_train.txt')
 train_data <- read.table('raw_data/UCI HAR Dataset/train/X_train.txt')
 train_labels <- read.table('raw_data/UCI HAR Dataset/train/y_train.txt')
