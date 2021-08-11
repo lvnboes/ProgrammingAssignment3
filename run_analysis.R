@@ -1,4 +1,4 @@
-# read all data and column names
+# read all data, labels and column names
 
 features <- read.table('raw_data/UCI HAR Dataset/features.txt')
 labels <- read.table('raw_data/UCI HAR Dataset/activity_labels.txt')
