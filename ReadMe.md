@@ -10,7 +10,7 @@ Below, I will display my script to clean the data up in short chunks and explain
 
 ```{r read}
 features <- read.table('raw_data/UCI HAR Dataset/features.txt')
-labels <- read.table('raw_data/UCI HAR Dataset/activity_labels.txt')
+activities <- read.table('raw_data/UCI HAR Dataset/activity_labels.txt')
 test_subjects <- read.table('raw_data/UCI HAR Dataset/test/subject_test.txt')
 test_data <- read.table('raw_data/UCI HAR Dataset/test/X_test.txt')
 test_labels <- read.table('raw_data/UCI HAR Dataset/test/y_test.txt')
@@ -24,10 +24,10 @@ The chunk of code above simply reads all the necessary data files.
 
 ```{r read}
 column_names <- features[,2]
-label_names <- labels[,2]
+activity_names <- activities[,2]
 ```
 
-The features and labels columns both contain a superfluous index column. In the code chunk above, I save the second column with respectively the feature names (i.e. the column names of the eventual data set) and the label names to separate variables.
+The features and activities data_frames both contain a superfluous index column. In the code chunk above, I save only the second, relevant column with respectively the feature names (i.e. the column names of the eventual data set) and the label names to separate variables.
 
 
 ```{r read}
@@ -48,37 +48,37 @@ Above, I Index the column names that include 'mean()' or 'std()' to extract only
 
 
 ```{r read}
-selected_test_data$Subjects <- test_subjects[,1]
-selected_test_data$Labels <- test_labels[,1]
-selected_train_data$Subjects <- train_subjects[,1]
-selected_train_data$Labels<- train_labels[,1]
+selected_test_data$Subject <- test_subjects[,1]
+selected_test_data$Activity <- test_labels[,1]
+selected_train_data$Subject <- train_subjects[,1]
+selected_train_data$Activity<- train_labels[,1]
 ```
 
-Then, I add the subject and label columns of both the test and train data sets to their respective data frames.
+Then, I add the Subject and Activity columns of both the test and train data sets to their respective data frames.
 
 
 ```{r read}
 all_data <- rbind(selected_test_data, selected_train_data)
 ```
 
-The line of code above joins both data frames.
+The line of code above joins both data frames into one.
 
 
 ```{r read}
-all_data$Labels <- factor(all_data$Labels)
-levels(all_data$Labels) <- label_names
+all_data$Activity <- factor(all_data$Activity)
+levels(all_data$Activity) <- activity_names
 ```
 
-Once both data sets are joined, I transform the Labels column to a factor and swap the numerical labels for meaningful ones.
+Once both data sets are joined, I transform the Activity column to a factor and swap the numerical labels for meaningful ones.
 
 
 ```{r read}
-sub <- match('Subjects', names(all_data))
-lab <- match('Labels', names(all_data))
-summary <- aggregate(all_data[,-c(sub, lab)], list(Labels = all_data$Labels, Subjects = all_data$Subjects), mean)
+sub <- match('Subject', names(all_data))
+act <- match('Activity', names(all_data))
+summary <- aggregate(all_data[,-c(sub, act)], list(Activity = all_data$Activity, Subject = all_data$Subject), mean)
 ```
 
-The code above groups the complete data set by Label and Subject, calculates the averages for these groups and saves the results to a new summary data frame.
+The code above groups the complete data set by Activity and Subject, calculates the averages for these groups and saves the results to a new summary data frame.
 
 
 ```{r read}
@@ -86,7 +86,7 @@ write.csv(all_data, file='clean_data/tidy_full_data.csv')
 write.csv(summary, file='clean_data/tidy_avg_data.csv')
 ```
 
-Finally, both the tidy dataset containing all the data and the tidy dataset with the summarised average data are written to separate csv-files.
+Finally, both the tidy dataset containing all the data and the tidy data set with the summarized average data are written to separate csv-files.
 
 
 
