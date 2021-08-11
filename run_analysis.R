@@ -49,7 +49,7 @@ sub <- match('Subjects', names(all_data))
 lab <- match('Labels', names(all_data))
 summary <- aggregate(all_data[,-c(sub, lab)], list(Labels = all_data$Labels, Subjects = all_data$Subjects), mean)
 
-# write csv of tidy dataset
+# write csv of tidy datasets
 
 write.csv(all_data, file='clean_data/tidy_full_data.csv')
 write.csv(summary, file='clean_data/tidy_avg_data.csv')
